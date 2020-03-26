@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
             title: 'Triboneira',
             debugShowCheckedModeBanner: false,
             routes: routes,
+            theme: ThemeData(unselectedWidgetColor: Color(0xFF00CEFF)),
           );
         },
       );
