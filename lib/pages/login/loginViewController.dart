@@ -20,11 +20,10 @@ class LoginPageState extends State<LoginBuilder>
     return Scaffold(
       backgroundColor: Colors.white,
       body: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, widget) {
-          return buildStack();
-        }
-      ),
+          animation: _controller,
+          builder: (context, widget) {
+            return buildStack();
+          }),
     );
   }
 
@@ -39,8 +38,12 @@ class LoginPageState extends State<LoginBuilder>
         children: <Widget>[
           Container(
             height: _height / 3,
+            width: _width,
             decoration: BoxDecoration(
-              color: Color(0xFF00CEFF),
+              image: DecorationImage(
+                image: AssetImage('assets/images/background_login.png'),
+                fit: BoxFit.cover,
+              ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(50.0),
                 bottomRight: Radius.circular(50.0),
@@ -48,16 +51,19 @@ class LoginPageState extends State<LoginBuilder>
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey,
-                  blurRadius: 7.0, // has the effect of softening the shadow
-                  spreadRadius: 2, // has the effect of extending the shadow
+                  blurRadius: 7.0,
+                  spreadRadius: 2,
                   offset: Offset(
                     0.0, // horizontal, move right 10
                     2.0, // vertical, move down 10
                   ),
-                )
+                ),
               ],
             ),
-            //child: Logo do Gau,
+            child: Image.asset(
+              'assets/images/LOGO-G-POSITIVO.png',
+              height: 30,
+            ),
           ),
           SizedBox(
             height: 50,
@@ -75,17 +81,19 @@ class LoginPageState extends State<LoginBuilder>
                 ),
                 RichText(
                   text: TextSpan(
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.black54,
-                        fontFamily: 'Draft B',
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(text: "Ao app da "),
-                        TextSpan(
-                            text: "TRIBO",
-                            style: TextStyle(fontWeight: FontWeight.bold))
-                      ]),
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.black54,
+                      fontFamily: 'Draft B',
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(text: "Ao app da "),
+                      TextSpan(
+                        text: "TRIBO",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -94,24 +102,27 @@ class LoginPageState extends State<LoginBuilder>
             height: 40,
           ),
           Container(
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 50.0, // has the effect of softening the shadow
-                spreadRadius: -30, // has the effect of extending the shadow
-                offset: Offset(
-                  10.0, // horizontal, move right 10
-                  10.0, // vertical, move down 10
-                ),
-              )
-            ]),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 50.0,
+                  spreadRadius: -30,
+                  offset: Offset(
+                    10.0,
+                    10.0,
+                  ),
+                )
+              ],
+            ),
             width: _width / 1.2,
             child: RaisedButton(
               onPressed: () {},
               padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
               color: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
               child: Row(
                 children: <Widget>[
                   FaIcon(
@@ -134,7 +145,7 @@ class LoginPageState extends State<LoginBuilder>
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left:20.0),
+            padding: const EdgeInsets.only(left: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -146,9 +157,11 @@ class LoginPageState extends State<LoginBuilder>
                     activeColor: Color(0xFF00CEFF),
                     value: _rememberLogin,
                     onChanged: (bool value) {
-                      setState(() {
-                        _rememberLogin = value;
-                      });
+                      setState(
+                        () {
+                          _rememberLogin = value;
+                        },
+                      );
                     },
                   ),
                 ),
