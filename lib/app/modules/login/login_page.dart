@@ -1,39 +1,29 @@
+import 'package:Triboneira/app/shared/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'loginBuilder.dart';
+import 'login_controller.dart';
 
-class LoginPageState extends State<LoginBuilder>
-    with SingleTickerProviderStateMixin {
-  double screenHeight = 0;
-  AnimationController _controller;
+class LoginPage extends StatefulWidget {
+  final String title;
+  const LoginPage({Key key, this.title = "Login"}) : super(key: key);
 
   @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-        vsync: this, duration: const Duration(microseconds: 500));
-  }
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends ModularState<LoginPage, LoginController> {
+  //use 'controller' variable to access controller
+  bool _rememberLogin = true;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, widget) {
-            return buildStack();
-          }),
-    );
-  }
-
-  Widget buildStack() {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    bool _rememberLogin = true;
 
-    return Container(
-      child: Column(
+    return Scaffold(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
@@ -127,7 +117,7 @@ class LoginPageState extends State<LoginBuilder>
                 children: <Widget>[
                   FaIcon(
                     FontAwesomeIcons.twitch,
-                    color: Color(0xFF00CEFF),
+                    color: blueColor,
                   ),
                   SizedBox(
                     width: 10,
@@ -136,7 +126,7 @@ class LoginPageState extends State<LoginBuilder>
                     'Faça login através da Twitch',
                     style: TextStyle(
                       fontSize: 16,
-                      color: Color(0xFF00CEFF),
+                      color: blueColor,
                       fontFamily: 'Draft B',
                     ),
                   ),
@@ -154,7 +144,7 @@ class LoginPageState extends State<LoginBuilder>
                   height: 45.0,
                   child: Checkbox(
                     tristate: false,
-                    activeColor: Color(0xFF00CEFF),
+                    activeColor: blueColor,
                     value: _rememberLogin,
                     onChanged: (bool value) {
                       setState(
@@ -170,7 +160,7 @@ class LoginPageState extends State<LoginBuilder>
                   style: TextStyle(
                     fontFamily: "Draft B",
                     fontSize: 14,
-                    color: Color(0xFF00CEFF),
+                    color: blueColor,
                   ),
                 ),
               ],
