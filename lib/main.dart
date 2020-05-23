@@ -1,26 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Triboneira/routes/routes.dart';
+import 'package:Triboneira/app/app_module.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-import 'config/sizeConfig.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return OrientationBuilder(
-        builder: (context, orientation) {
-          SizeConfig().init(constraints, orientation);
-          return MaterialApp(
-            title: 'Triboneira',
-            debugShowCheckedModeBanner: false,
-            routes: routes,
-          );
-        },
-      );
-    });
-  }
-}
+void main() => runApp(ModularApp(module: AppModule()));
