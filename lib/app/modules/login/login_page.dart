@@ -1,7 +1,9 @@
 import 'package:Triboneira/app/shared/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_web_auth/flutter_web_auth.dart';
 
 import 'login_controller.dart';
 
@@ -16,6 +18,25 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   //use 'controller' variable to access controller
   bool _rememberLogin = true;
+  String _status = '';
+
+  void oauthTwitch() async {
+    final url = 'http://localhost:3000/auth/twitch';
+    final callbackUrlScheme = 'tribogaules://';
+
+    try {
+      final result = await FlutterWebAuth.authenticate(
+          url: url, callbackUrlScheme: callbackUrlScheme);
+      setState(() {
+        _status = 'Got result: $result';
+        print(_status);
+      });
+    } on PlatformException catch (e) {
+      setState(() {
+        _status = 'Got error: $e';
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +128,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
             ),
             width: _width / 1.2,
             child: RaisedButton(
-              onPressed: () {},
+              onPressed: oauthTwitch,
               padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
               color: Colors.white,
               shape: RoundedRectangleBorder(
