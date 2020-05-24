@@ -24,6 +24,7 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
+.flutter-plugins-dependencies
 .flutter-plugins
 .packages
 .pub-cache/
@@ -40,6 +41,8 @@ build/
 **/android/**/GeneratedPluginRegistrant.java
 
 # iOS/XCode related
+ios/Flutter
+ios/Flutter/
 **/ios/**/*.mode1v3
 **/ios/**/*.mode2v3
 **/ios/**/*.moved-aside
@@ -59,6 +62,8 @@ build/
 **/ios/Flutter/App.framework
 **/ios/Flutter/Flutter.framework
 **/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/Debug.xcconfig
+**/ios/Flutter/Release.xcconfig
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
