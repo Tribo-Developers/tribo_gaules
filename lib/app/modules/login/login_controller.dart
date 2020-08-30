@@ -10,6 +10,7 @@ class LoginController = _LoginControllerBase with _$LoginController;
 abstract class _LoginControllerBase with Store {
   final ILocalStorage localStorage;
 
+  // ignore: type_init_formals
   _LoginControllerBase(ILocalStorage this.localStorage);
 
   @observable

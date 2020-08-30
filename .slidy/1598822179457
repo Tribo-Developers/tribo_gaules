@@ -1,0 +1,5 @@
+lib/app/modules/store/store_module.dart
+lib/app/modules/store/store_page.dart
+test/app/modules/store/store_page_test.dart
+lib/app/modules/store/store_controller.dart
+test/app/modules/store/store_controller_test.dart

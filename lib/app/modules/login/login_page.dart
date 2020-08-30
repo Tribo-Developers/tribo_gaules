@@ -123,7 +123,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                 children: <Widget>[
                   FaIcon(
                     FontAwesomeIcons.twitch,
-                    color: blueColor,
+                    color: AppColors.blueColor,
                   ),
                   SizedBox(
                     width: 10,
@@ -132,7 +132,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                     'Faça login através da Twitch',
                     style: TextStyle(
                       fontSize: 16,
-                      color: blueColor,
+                      color: AppColors.blueColor,
                       fontFamily: 'Draft B',
                     ),
                   ),
@@ -151,7 +151,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                     height: 45.0,
                     child: Checkbox(
                       // tristate: false,
-                      activeColor: blueColor,
+                      activeColor: AppColors.blueColor,
                       value: controller.rememberLogin,
                       onChanged: controller.setStatusLogin,
                     ),
@@ -161,7 +161,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                     style: TextStyle(
                       fontFamily: "Draft B",
                       fontSize: 14,
-                      color: blueColor,
+                      color: AppColors.blueColor,
                     ),
                   ),
                 ],

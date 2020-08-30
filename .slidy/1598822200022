@@ -1,0 +1,5 @@
+lib/app/modules/wallet/wallet_module.dart
+lib/app/modules/wallet/wallet_page.dart
+test/app/modules/wallet/wallet_page_test.dart
+lib/app/modules/wallet/wallet_controller.dart
+test/app/modules/wallet/wallet_controller_test.dart
