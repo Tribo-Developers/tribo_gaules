@@ -6,42 +6,68 @@ part of 'login_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginController on _LoginControllerBase, Store {
-  final _$valueAtom = Atom(name: '_LoginControllerBase.value');
+  final _$rememberLoginAtom = Atom(name: '_LoginControllerBase.rememberLogin');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  bool get rememberLogin {
+    _$rememberLoginAtom.reportRead();
+    return super.rememberLogin;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set rememberLogin(bool value) {
+    _$rememberLoginAtom.reportWrite(value, super.rememberLogin, () {
+      super.rememberLogin = value;
     });
   }
 
-  final _$_LoginControllerBaseActionController =
-      ActionController(name: '_LoginControllerBase');
+  final _$statusAtom = Atom(name: '_LoginControllerBase.status');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
-    }
+  String get status {
+    _$statusAtom.reportRead();
+    return super.status;
+  }
+
+  @override
+  set status(String value) {
+    _$statusAtom.reportWrite(value, super.status, () {
+      super.status = value;
+    });
+  }
+
+  final _$getStatusloginAsyncAction =
+      AsyncAction('_LoginControllerBase.getStatuslogin');
+
+  @override
+  Future getStatuslogin() {
+    return _$getStatusloginAsyncAction.run(() => super.getStatuslogin());
+  }
+
+  final _$setStatusLoginAsyncAction =
+      AsyncAction('_LoginControllerBase.setStatusLogin');
+
+  @override
+  Future setStatusLogin(dynamic value) {
+    return _$setStatusLoginAsyncAction.run(() => super.setStatusLogin(value));
+  }
+
+  final _$oauthTwitchAsyncAction =
+      AsyncAction('_LoginControllerBase.oauthTwitch');
+
+  @override
+  Future oauthTwitch() {
+    return _$oauthTwitchAsyncAction.run(() => super.oauthTwitch());
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+rememberLogin: ${rememberLogin},
+status: ${status}
     ''';
   }
 }

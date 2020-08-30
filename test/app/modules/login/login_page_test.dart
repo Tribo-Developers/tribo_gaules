@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_modular/flutter_modular_test.dart';
-
-import 'package:Triboneira/app/modules/login/login_page.dart';
 
 main() {
   testWidgets('LoginPage has title', (WidgetTester tester) async {

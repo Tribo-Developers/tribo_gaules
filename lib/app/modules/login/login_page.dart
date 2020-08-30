@@ -1,9 +1,8 @@
 import 'package:Triboneira/app/shared/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
 
 import 'login_controller.dart';
 
@@ -16,26 +15,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
-  //use 'controller' variable to access controller
-  bool _rememberLogin = true;
-  String _status = '';
-
-  void oauthTwitch() async {
-    final url = 'http://localhost:3000/auth/twitch';
-    final callbackUrlScheme = 'tribogaules://';
-
-    try {
-      final result = await FlutterWebAuth.authenticate(
-          url: url, callbackUrlScheme: callbackUrlScheme);
-      setState(() {
-        _status = 'Got result: $result';
-        print(_status);
-      });
-    } on PlatformException catch (e) {
-      setState(() {
-        _status = 'Got error: $e';
-      });
-    }
+  // bool _static;
+  @override
+  void initState() {
+    super.initState();
+    controller.getStatuslogin();
+    print(controller.getStatuslogin());
   }
 
   @override
@@ -128,7 +113,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
             ),
             width: _width / 1.2,
             child: RaisedButton(
-              onPressed: oauthTwitch,
+              onPressed: controller.oauthTwitch,
               padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
               color: Colors.white,
               shape: RoundedRectangleBorder(
@@ -157,35 +142,31 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  width: 35.0,
-                  height: 45.0,
-                  child: Checkbox(
-                    tristate: false,
-                    activeColor: blueColor,
-                    value: _rememberLogin,
-                    onChanged: (bool value) {
-                      setState(
-                        () {
-                          _rememberLogin = value;
-                        },
-                      );
-                    },
+            child: Observer(builder: (_) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    width: 35.0,
+                    height: 45.0,
+                    child: Checkbox(
+                      // tristate: false,
+                      activeColor: blueColor,
+                      value: controller.rememberLogin,
+                      onChanged: controller.setStatusLogin,
+                    ),
                   ),
-                ),
-                Text(
-                  "Lembrar o meu login",
-                  style: TextStyle(
-                    fontFamily: "Draft B",
-                    fontSize: 14,
-                    color: blueColor,
+                  Text(
+                    "Lembrar o meu login",
+                    style: TextStyle(
+                      fontFamily: "Draft B",
+                      fontSize: 14,
+                      color: blueColor,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              );
+            }),
           ),
         ],
       ),
