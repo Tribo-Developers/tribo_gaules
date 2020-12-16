@@ -1,5 +1,6 @@
 import 'package:Triboneira/app/shared/repositories/local_storage_interface.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:mobx/mobx.dart';
 
@@ -36,15 +37,26 @@ abstract class _LoginControllerBase with Store {
 
   @action
   oauthTwitch() async {
-    final url = 'http://localhost:3000/auth/twitch';
+    final url = 'https://backend-tribo-gaules.herokuapp.com/auth/twitch';
     final callbackUrlScheme = 'tribogaules://';
 
     try {
       final result = await FlutterWebAuth.authenticate(
           url: url, callbackUrlScheme: callbackUrlScheme);
       status = 'Got result: $result';
+
+      final resultURI = Uri.parse(result);
+      final codeOauth = resultURI.queryParameters['code'];
+      final stateOauth = resultURI.queryParameters['state'];
+      final scopeOauth = resultURI.queryParameters['scope'];
+      print('codeOauth: ' + codeOauth);
+      print('stateOauth: ' + stateOauth);
+      print('scopeOauth: ' + scopeOauth);
+
+      Modular.to.pushNamed('/home');
     } on PlatformException catch (e) {
       status = 'Got error: $e';
+      print('Error: ' + status);
     }
     return status;
   }
